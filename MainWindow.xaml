@@ -1,0 +1,210 @@
+﻿<Window x:Class="Sokoban.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sokoban"
+        mc:Ignorable="d"
+        Title="Sokoban" Height="450" Width="800" KeyDown="KeyboardControls" Icon="Resources\Images\icon.ico">
+    <Window.Resources>
+        <Style x:Key="Tile">
+            <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor"/>
+        </Style>
+
+        <Style x:Key="Player" TargetType="Image" BasedOn="{StaticResource Tile}">
+            <Setter Property="Source" Value="Resources\Images\player.png"/>
+        </Style>
+
+        <Style x:Key="Box" TargetType="Image" BasedOn="{StaticResource Tile}">
+            <Setter Property="Source" Value="Resources\Images\box.png"/>
+        </Style>
+
+        <Style x:Key="Goal" TargetType="Image" BasedOn="{StaticResource Tile}">
+            <Setter Property="Source" Value="Resources\Images\goal.png"/>
+        </Style>
+
+        <Style x:Key="Wall1" TargetType="Image" BasedOn="{StaticResource Tile}">
+            <Setter Property="Source" Value="Resources\Images\wall1.png"/>
+        </Style>
+        <Style x:Key="Wall2" TargetType="Image" BasedOn="{StaticResource Tile}">
+            <Setter Property="Source" Value="Resources\Images\wall2.png"/>
+        </Style>
+        <Style x:Key="Wall3" TargetType="Image" BasedOn="{StaticResource Tile}">
+            <Setter Property="Source" Value="Resources\Images\wall3.png"/>
+        </Style>
+
+        <Style x:Key="Grass1" TargetType="Image" BasedOn="{StaticResource Tile}">
+            <Setter Property="Source" Value="Resources\Images\grass1.png"/>
+        </Style>
+        <Style x:Key="Grass2" TargetType="Image" BasedOn="{StaticResource Tile}">
+            <Setter Property="Source" Value="Resources\Images\grass2.png"/>
+        </Style>
+        <Style x:Key="Grass3" TargetType="Image" BasedOn="{StaticResource Tile}">
+            <Setter Property="Source" Value="Resources\Images\grass3.png"/>
+        </Style>
+
+
+        <Style TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Resources\Other\Font\#Mai10"/>
+        </Style>
+
+        <Style TargetType="Image">
+            <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid x:Name="grid">
+        <Viewbox Panel.ZIndex="-100" Stretch="UniformToFill">
+            <Image RenderOptions.BitmapScalingMode="NearestNeighbor" Source="Resources\Images\background.png"/>
+        </Viewbox>
+
+        <Grid x:Name="Game" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border Panel.ZIndex="1">
+                <Grid x:Name="GrassGrid">
+                </Grid>
+            </Border>
+            <Grid x:Name="TileGrid" Panel.ZIndex="2">
+            </Grid>
+            <Grid x:Name="VictoryScreen" Panel.ZIndex="3" Background="#7F000000" MaxHeight="{Binding ActualHeight, ElementName=Game, Mode=OneWay}" MaxWidth="{Binding ActualWidth, ElementName=Game, Mode=OneWay}">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition  Height="2*"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Viewbox Grid.Row="1">
+                    <Label Foreground="White" Content="VICTORY" FontWeight="Bold" FontFamily="Bahnschrift" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#BF000000"/>
+                </Viewbox>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="Menus">
+            <Image Source="Resources\Images\menus_background.png"/>
+            <Grid x:Name="MainMenu">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+
+                <Viewbox Grid.Column="1" Grid.ColumnSpan="3">
+                    <TextBlock Text="SOKOBAN" Background="#3FFFFFFF"/>
+                </Viewbox>
+                
+                <Button Click="ChangeMenuLevel" Grid.Column="1" Grid.Row="1">
+                    <Button.Content>
+                        <Viewbox>
+                            <TextBlock Text="Load Level"/>
+                        </Viewbox>
+                    </Button.Content>
+                </Button>
+                
+                <Button Click="ChangeMenuControls"  Grid.Column="3" Grid.Row="1">
+                    <Button.Content>
+                        <Viewbox>
+                            <TextBlock Text="Controls"/>
+                        </Viewbox>
+                    </Button.Content>
+                </Button>
+            </Grid>
+
+            <Grid x:Name="ControlsMenu">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.25*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.25*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.25*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.25*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Source="Resources\Images\Tutorial\movement.png" Grid.Row="1" Grid.Column="1"/>
+                <Image Source="Resources\Images\Tutorial\goal.png" Grid.Row="1" Grid.Column="3"/>
+                <Image Source="Resources\Images\Tutorial\restart.png" Grid.Row="3" Grid.Column="1"/>
+                <Image Source="Resources\Images\Tutorial\main_menu.png" Grid.Row="3" Grid.Column="3"/>
+            </Grid>
+            
+            <Grid x:Name="LoadLevelMenu">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="0.1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Click="LoadFile"  Grid.Row="3" Grid.Column="1">
+                        <Button.Content>
+                            <Viewbox>
+                                <TextBlock Text="Load From File"/>
+                            </Viewbox>
+                        </Button.Content>
+                    </Button>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="0.1*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Button Click="LoadLevelButton" Tag="1.soko">
+                            <Button.Content>
+                                <Viewbox>
+                                    <TextBlock Text="1"/>
+                                </Viewbox>
+                            </Button.Content>
+                        </Button>
+                        <Button Click="LoadLevelButton" Tag="2.soko" Grid.Column="2">
+                            <Button.Content>
+                                <Viewbox>
+                                    <TextBlock Text="2"/>
+                                </Viewbox>
+                            </Button.Content>
+                        </Button>
+                        <Button Click="LoadLevelButton" Tag="3.soko" Grid.Column="4">
+                            <Button.Content>
+                                <Viewbox>
+                                    <TextBlock Text="3"/>
+                                </Viewbox>
+                            </Button.Content>
+                        </Button>
+
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

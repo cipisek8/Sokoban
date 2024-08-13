@@ -1,0 +1,98 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="background.png" />
+		<None Remove="Resources\Images\background.png" />
+		<None Remove="Resources\Images\box.png" />
+		<None Remove="Resources\Images\goal.png" />
+		<None Remove="Resources\Images\grass1.png" />
+		<None Remove="Resources\Images\grass2.png" />
+		<None Remove="Resources\Images\grass3.png" />
+		<None Remove="Resources\Images\icon.ico" />
+		<None Remove="Resources\Images\menus_background.png" />
+		<None Remove="Resources\Images\player.png" />
+		<None Remove="Resources\Images\Tutorial\goal.png" />
+		<None Remove="Resources\Images\Tutorial\main_menu.png" />
+		<None Remove="Resources\Images\Tutorial\movement.png" />
+		<None Remove="Resources\Images\Tutorial\restart.png" />
+		<None Remove="Resources\Images\wall1.png" />
+		<None Remove="Resources\Images\wall2.png" />
+		<None Remove="Resources\Images\wall3.png" />
+		<None Remove="Resources\Levels\1.soko" />
+		<None Remove="Resources\Levels\2.soko" />
+		<None Remove="Resources\Levels\3.soko" />
+		<None Remove="Resources\Other\Font\mai10.ttf" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Resources\Images\background.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Resources\Images\box.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Resources\Images\goal.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Resources\Images\grass1.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Resources\Images\grass2.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Resources\Images\grass3.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Resources\Images\icon.ico">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Resources\Images\menus_background.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Resources\Images\player.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Resources\Images\Tutorial\goal.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Resources\Images\Tutorial\main_menu.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Resources\Images\Tutorial\movement.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Resources\Images\Tutorial\restart.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Resources\Images\wall1.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Resources\Images\wall2.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Resources\Images\wall3.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Resources\Levels\1.soko">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Resources\Levels\2.soko">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Resources\Levels\3.soko">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Resource Include="Resources\Other\Font\mai10.ttf">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Resource>
+	</ItemGroup>
+
+</Project>
