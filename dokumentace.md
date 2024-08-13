@@ -3,28 +3,34 @@ XAML je rozdìlenı na 2 èásti:
 - Menus - kde jsou všechna menu
 - Game - kde je samotná hra
 
-Tlaèítka v menu volají metody, které pøepínají GameState.
+Tlaèítka v menu volají metody, které pøepínají _state.
 
-Herní pole je vytvoøené z gridu, kterı má stejnou velikost jako mapa. Kadá kostka v nìm je vlastní Image.
+Herní pole je vytvoøené z gridu, kterı má stejnou velikost jako mapa. Kadé pole v nìm je vlastní Image.
 
 ---
 # Promìné
-### MainWindow ---- AppState _state
-Urèuje stádium aplikace (v hlavním menu, ve høe, v menu vybírání levelu,...).
-### MainWindow ---- int _rows
+### MainWindow._state
+Urèuje stav aplikace (v hlavním menu, ve høe, v menu vybírání levelu,...).
+
+### MainWindow._rows
 Urèuje poèet øádkù.
-### MainWindow ---- int _columns
+
+### MainWindow._columns
 Urèuje poèet sloupcù.
-### MainWindow ---- string _filePath
+
+### MainWindow._filePath
 Ukládá cestu k souboru naèteného levelu.
-### MainWindow ---- Tile[] _tiles;
+
+### MainWindow._tiles
 Ukládá všechna pole ve høe (zdi, góly, hráèe, krabice).
 
-### Tile ---- Point Coordinates;
+### Tile.Coordinates
 Urèuje kde se pole nachází.
-### Tile ---- Tile[] _listReference;
+
+### Tile._listReference
 Reference na list, kde se nachází všechna políèka.
-### Tile ---- Image Item;
+
+### Tile.Item
 Ukládá obrázek, kterı se dává do TileGrid.
 
 ---
@@ -61,10 +67,15 @@ Otevøe FileDialog a pokusí se naèíst level.
 Naète level ze souboru Resources\Levels.
 
 ---
+## Tøída Tile a potomci
+
+Tøídy Player, Box, Goal, Wall dìdí z abstarktní tøídy Tile, která zajišuje chovaní polí ve høe.
 
 ### Tile.Move
 Zkontroluje, jestli se mùe pohnout v daném smìru (Tile.CanMove), a jestli mùe, pohne se (Tile.ChangePosition).
+
 ### Tile.CanMove
 Zkontroluje, jestli se mùe pohnout v daném smìru.
+
 ### Tile.ChangePosition
 Pohne se na danou pozici.
